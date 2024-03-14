@@ -51,7 +51,7 @@ def test():
     print("Bonjour")
 
 if __name__ == '__main__':
-    schedule.every(5).hours.do(main)
+    schedule.every().day.at("11:45").do(main)
 
     while True:
         schedule.run_pending()
