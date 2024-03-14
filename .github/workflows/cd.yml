@@ -27,4 +27,4 @@ jobs:
                     echo "POSTGRES_DB=${{ secrets.POSTGRES_DB}}" >> .env
                     echo "POSTGRES_HOST=${{ secrets.POSTGRES_HOST}}" >> .env
                     echo "POSTGRES_PORT=${{ secrets.POSTGRES_PORT }}" >> .env
-                    make generate-data
+                    docker compose --env-file .env up --build -d run

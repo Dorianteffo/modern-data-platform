@@ -52,7 +52,6 @@ lint:
 
 ci: isort format type lint
 
-
 generate-data: 
 	cd data_generator && docker compose --env-file .env up --build -d run
 
