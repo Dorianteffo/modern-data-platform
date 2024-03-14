@@ -36,7 +36,7 @@ tf-destroy:
 ################# Data Generator###########################################
 
 up-ci: 
-	cd data_generator && docker compose --env-file .env up --build -d ci
+	cd data_generator && docker compose up --build -d ci
 
 format:
 	cd data_generator && docker exec app python -m black -S --line-length 79 .

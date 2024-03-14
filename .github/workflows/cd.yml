@@ -8,7 +8,6 @@ jobs:
     deploy_eto_c2:
         name: deploy_to_EC2
         runs-on: ubuntu-latest
-
         steps: 
             - name: Checkout repo 
               uses: actions/checkout@v2
