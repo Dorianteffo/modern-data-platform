@@ -1,0 +1,9 @@
+pandas
+faker
+sqlalchemy 
+psycopg2
+isort 
+flake8
+mypy 
+black
+schedule

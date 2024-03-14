@@ -1,0 +1,27 @@
+name: CI
+
+on: [pull_request]
+
+jobs: 
+    ci: 
+        name: CI 
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repo 
+              uses: actions/checkout@v2
+
+            # - name: Set Environment Variables
+            #   run: |
+            #     echo "POSTGRES_USER=${{ secrets.POSTGRES_USER }}" > .env
+            #     echo "POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}" >> .env
+            #     echo "POSTGRES_DB=${{ secrets.POSTGRES_DB}}" >> .env
+            #     echo "POSTGRES_HOST=${{ secrets.POSTGRES_HOST}}" >> .env
+            #     echo "POSTGRES_PORT=${{ secrets.POSTGRES_PORT }}" >> .env
+
+            - name: Spin up container
+              run: make up-ci
+            
+            - name: Run CI tests
+              run: make ci
+            
+

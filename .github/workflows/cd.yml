@@ -1,0 +1,31 @@
+name: CD
+on:
+  push:
+    branches:
+      - master
+
+jobs: 
+    deploy_eto_c2:
+        name: deploy_to_EC2
+        runs-on: ubuntu-latest
+
+        steps: 
+            - name: Checkout repo 
+              uses: actions/checkout@v2
+
+            - name: Deploy server
+              uses: easingthemes/ssh-deploy@main
+              with:
+                SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
+                REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+                REMOTE_USER: ${{ secrets.REMOTE_USER }}
+                SOURCE: "/data_generator/"
+                TARGET: "/home/ubuntu/data_generator"
+                SCRIPT_AFTER: |
+                    cd data_generator
+                    echo "POSTGRES_USER=${{ secrets.POSTGRES_USER }}" > .env
+                    echo "POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}" >> .env
+                    echo "POSTGRES_DB=${{ secrets.POSTGRES_DB}}" >> .env
+                    echo "POSTGRES_HOST=${{ secrets.POSTGRES_HOST}}" >> .env
+                    echo "POSTGRES_PORT=${{ secrets.POSTGRES_PORT }}" >> .env
+                    make generate-data
