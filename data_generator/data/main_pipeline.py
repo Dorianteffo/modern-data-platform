@@ -51,6 +51,7 @@ def test():
     print("Bonjour")
 
 if __name__ == '__main__':
+    # generate data every 2 hours
     schedule.every(2).hours.do(main)
 
     while True:
