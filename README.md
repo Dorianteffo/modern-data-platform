@@ -3,8 +3,14 @@
 * Before running the terraform apply 
 export TF_VAR_pwd_db=your_db_password
 
-* Create schema in the RDS database 
+* Snowflake structure 
+```  
+RAW  : database to store raw data coming from Airbyte (schemas : postgres_airbyte )
+ANALYTICS : the production data (schemas: staging, intermediate, marts(finance))
+DBT_DEV: the dev database (the same schemas as the production database)
 
+```
 
-* SSH tunneling : ssh -L 8000:private_instance_private_ip:8000 ssh_user@public_server_ip -N
+* To ingest data from RDS to Snowflake
+
 
