@@ -57,7 +57,7 @@ def main():
 
 if __name__ == '__main__':
     # generate data every 2 hours
-    schedule.every(2).minutes.do(main)
+    schedule.every(2).hours.do(main)
 
     while True:
         schedule.run_pending()
