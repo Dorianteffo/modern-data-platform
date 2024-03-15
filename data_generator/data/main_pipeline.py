@@ -47,8 +47,6 @@ def main():
 
     close_conn(engine)
 
-def test(): 
-    print("Bonjour")
 
 if __name__ == '__main__':
     # generate data every 2 hours
