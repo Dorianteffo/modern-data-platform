@@ -43,7 +43,7 @@ def generate_subscriptions_data(transactions: list) -> list:
     subscriptions = []
     for record in transactions:
         subscription_data = {
-            "id": record["id"],
+            "id": random.randint(1000, 9999),
             "plan": random_plan(),
             "status": random_status(),
             "payment_method": random_payment_method(),
@@ -57,3 +57,22 @@ def generate_subscriptions_data(transactions: list) -> list:
         subscriptions.append(subscription_data)
 
     return subscriptions
+
+
+
+def generate_random_subscription_details(transactions : list):
+    subscriptions_details = []
+
+    for record in transactions :
+        data = {
+        "id" : random.randint(1000, 9999),
+        "user_id": record["user_id"],
+        "revenue" : round(random.uniform(10, 1000), 2),
+        "quantity" : random.randint(1, 10),
+        "discount_amount" : round(random.uniform(0, 100), 2),
+        "rating" : random.randint(1, 5)
+        }
+
+        subscriptions_details.append(data)
+
+    return subscriptions_details
