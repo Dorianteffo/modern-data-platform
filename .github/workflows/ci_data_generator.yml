@@ -5,7 +5,7 @@ on:
     branches: 
       - master
     paths: 
-      - data_generator/*
+      - 'data_generator/**'
 
 jobs: 
     ci: 
