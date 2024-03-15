@@ -12,6 +12,7 @@ from utils.db import WarehouseConnection, get_warehouse_creds
 
 
 def main():
+    # create dataframes
     bank_data = generate_bank_data()
     bank_df = pd.DataFrame(bank_data)
 
@@ -36,7 +37,9 @@ def main():
     )
 
     load_mode = 'append'
-    schema_name = 'app'
+    schema_name = 'app'  # database schema name
+
+    # load tables to app schema
     load_table(bank_df, engine, 'bank', schema_name, load_mode)
     load_table(credit_card_df, engine, 'credit_card', schema_name, load_mode)
     load_table(transactions_df, engine, 'stripe', schema_name, load_mode)
