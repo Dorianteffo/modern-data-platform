@@ -55,10 +55,19 @@ ci: isort format type lint
 generate-data: 
 	cd data_generator && docker compose --env-file .env up --build -d run
 
+
 down: 
 	cd data_generator && docker compose down 
 
 
+###############################################################################################""
+airbyte-ec2: 
+	terraform -chdir=./terraform output -raw private_key > private_key.pem && chmod 600 private_key.pem && ssh -o StrictHostKeyChecking=no -o IdentitiesOnly=yes -i private_key.pem ec2-user@$$(terraform -chdir=./terraform output -raw airbyte_ec2_public_dns) && rm private_key.pem
 
+
+
+
+airbyte: 
+	terraform -chdir=./terraform output -raw private_key > private_key.pem && chmod 600 private_key.pem && ssh -o "IdentitiesOnly yes" -i private_key.pem ec2-user@$$(terraform -chdir=./terraform output -raw airbyte_ec2_public_dns) -N -f -L 9000:localhost:8000 && rm private_key.pem
 
 

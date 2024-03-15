@@ -208,6 +208,8 @@ resource "aws_key_pair" "generated_key" {
 }
 
 
+
+
 resource "aws_instance" "sde_ec2" {
     ami           = data.aws_ami.ubuntu.id
     instance_type = var.instance_type
@@ -250,4 +252,13 @@ EOF
 
 }
 
+
+
+resource "aws_s3_bucket" "s3_bucket" {
+  bucket = var.bucket_name
+
+  tags = {
+    Name        = "modern data platform bucket"
+  }
+}
 

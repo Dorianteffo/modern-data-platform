@@ -38,7 +38,7 @@ def random_swift_bic():
 
 def generate_bank_data() -> list:
     bank_data = []
-    for i in range(500):
+    for i in range(100):
         common_record = {
             "id": random.randint(1000, 9999),
             "account_number": random_number(),

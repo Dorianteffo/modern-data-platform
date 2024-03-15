@@ -30,3 +30,14 @@ variable "pwd_db" {
   description = "Password rds"
 }
 
+
+variable "bucket_name" {
+  type        = string
+  default     = "modern-data-platform"
+  description = "Bucket to store RDS data"
+}
+
+
+
+
+
