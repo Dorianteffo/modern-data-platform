@@ -8,7 +8,7 @@ on:
 
 
 jobs: 
-    deploy_eto_c2:
+    deploy_to_ec2:
         name: deploy_to_EC2
         runs-on: ubuntu-latest
         steps: 

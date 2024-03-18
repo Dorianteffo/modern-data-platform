@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  dbt:
+    container_name: dbt
+    build:
+      context: .
+    volumes:
+      - ./:/code
+    environment:
+        ACCOUNT: ${ACCOUNT}
+        DEV_DATABASE: ${DEV_DATABASE}
+        PROD_DATABASE: ${PROD_DATABASE}
+        PASSWORD: ${PASSWORD}
+        ROLE: ${ROLE}
+        USER: ${USER}
+        WAREHOUSE: ${WAREHOUSE}
+        SCHEMA: ${SCHEMA}

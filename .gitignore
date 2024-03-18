@@ -1,5 +1,3 @@
 tf-var.txt
 *.pem
 airflow/
-Lambda_ingestion/
-DBT/

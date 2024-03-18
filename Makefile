@@ -1,3 +1,6 @@
+########################################################################################
+
+###################### Terraform  ########################################
 tf-init :
 	terraform -chdir=./terraform init 
 
@@ -31,9 +34,10 @@ tf-destroy:
 
 
 
-##########################################################################################"
 
-################# Data Generator###########################################
+##########################################################################################
+
+################# Data Generator ###########################################
 
 up-ci: 
 	cd data_generator && docker compose up --build -d ci
@@ -55,19 +59,38 @@ ci: isort format type lint
 generate-data: 
 	cd data_generator && docker compose --env-file .env up --build -d run
 
-
 down: 
 	cd data_generator && docker compose down 
 
 
-###############################################################################################""
-airbyte-ec2: 
-	terraform -chdir=./terraform output -raw private_key > private_key.pem && chmod 600 private_key.pem && ssh -o StrictHostKeyChecking=no -o IdentitiesOnly=yes -i private_key.pem ec2-user@$$(terraform -chdir=./terraform output -raw airbyte_ec2_public_dns) && rm private_key.pem
 
 
 
+###############################################################################################
 
-airbyte: 
-	terraform -chdir=./terraform output -raw private_key > private_key.pem && chmod 600 private_key.pem && ssh -o "IdentitiesOnly yes" -i private_key.pem ec2-user@$$(terraform -chdir=./terraform output -raw airbyte_ec2_public_dns) -N -f -L 9000:localhost:8000 && rm private_key.pem
+################## DBT #####################################
+
+dbt-up: 
+	cd analytics && docker compose --env-file .env up --build -d
+
+
+dbt-debug: 
+	cd analytics && winpty docker exec -it dbt bash -c "cd dbt && dbt debug --profiles-dir=."
+
+
+dbt-test: 
+	cd analytics && winpty docker exec -it dbt bash -c "cd dbt && dbt test --profiles-dir=."
+
+
+dbt-run: 
+	cd analytics && winpty docker exec -it dbt bash -c "cd dbt && dbt run --profiles-dir=."
+
+
+dbt-deps: 
+	cd analytics && winpty docker exec -it dbt bash -c "cd dbt && dbt deps --profiles-dir=."
+
+
+dbt-deploy: 
+	cd analytics && winpty docker exec -it dbt bash -c "cd dbt && dbt run --profiles-dir=. --target prod"
 
 

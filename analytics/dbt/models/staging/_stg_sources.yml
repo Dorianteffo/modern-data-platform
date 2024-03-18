@@ -1,0 +1,133 @@
+version: 2
+
+sources:
+  - name: app
+    database: RAW 
+    schema: postgres_airbyte  
+    tables:
+      - name: user
+        columns:
+          - name: id
+            tests: 
+              - not_null
+              
+          - name: user_id
+            tests: 
+              - unique 
+              - not_null
+
+          - name: credit_card_id 
+            tests: 
+              - relationships:
+                  to: ref('credit_card')
+                  field: id
+
+          - name: subcription_id
+            tests: 
+              - relationships:
+                  to: ref('subscription')
+                  field: id  
+          - name: gender 
+            tests: 
+              - accepted_values:
+                  values: ['Male', 'Female', 'Other'] 
+
+
+      - name: subscription_details
+        columns:
+          - name: id
+            tests: 
+              - unique 
+              - not_null
+          - name: user_id
+            tests: 
+              - relationships:
+                  to: ref('user')
+                  field: user_id
+ 
+
+      - name: subscription 
+        columns:
+          - name: id
+            tests: 
+              - unique 
+              - not_null
+          - name: user_id
+            tests: 
+              - relationships:
+                  to: ref('user')
+                  field: user_id
+          - name: plan 
+            tests: 
+              - accepted_values:
+                  values: ['Standard', 'Basic', 'Platinum', 'Gold', 'Bronze']
+          - name: status
+            tests: 
+              - accepted_values:
+                  values: ['Active', 'Idle', 'Blocked', 'Cancelled']
+          - name: payment_method
+            tests: 
+              - accepted_values:
+                  values: ['Google Pay','Credit Card','Paypal', 'Bitcoins', 'Money Transfer','Alipay']
+          - name: subscription_term
+            tests: 
+              - accepted_values:
+                  values: ['Weekly', 'Monthly', 'Yearly', 'Lifetime', 'Quinquennal']
+          - name: payment_term 
+            tests: 
+              - accepted_values:
+                  values: ['Full Subscription','Monthly Payment','Payment in Advance','Pay per Use']
+
+
+      - name: credit_card
+        columns:
+          - name: id
+            tests: 
+              - unique 
+              - not_null
+          - name: user_id
+            tests: 
+              - relationships:
+                  to: ref('user')
+                  field: user_id
+          - name: credit_card_type
+            tests: 
+              - accepted_values:
+                  values: ['visa', 'mastercard', 'discover', 'diners_club', 'laser']
+
+
+      - name: bank 
+        columns:
+          - name: id
+            tests: 
+              - unique 
+              - not_null
+          - name: user_id
+            tests: 
+              - relationships:
+                  to: ref('user')
+                  field: user_id
+
+
+      - name: stripe
+        columns:
+          - name: id
+            tests: 
+              - unique 
+              - not_null
+          - name: user_id
+            tests: 
+              - relationships:
+                  to: ref('user')
+                  field: user_id
+          - name: valid_card 
+            tests: 
+              - relationships:
+                  to: ref('credit_card')
+                  field: credit_card_number
+          - name: token 
+            tests: 
+              - accepted_values:
+                  values: ['tok_visa', 'tok_mastercard', 'tok_discover']
+          # - name: ccv
+          # - name: ccv_amex

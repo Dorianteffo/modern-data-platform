@@ -246,6 +246,8 @@ sudo chmod 666 /var/run/docker.sock
 
 sudo apt install make
 
+git clone https://github.com/Dorianteffo/airflow_deploy
+
 echo "-------------------------END SETUP---------------------------"
 
 EOF
