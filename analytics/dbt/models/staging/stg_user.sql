@@ -1,6 +1,6 @@
 WITH user_occu AS (
     SELECT
-        user_id AS id, 
+        user_id, 
         ROW_NUMBER() OVER(PARTITION BY user_id ORDER BY dt_current_timestamp DESC) AS rn,  
         password AS password,
         first_name AS first_name,
@@ -16,20 +16,41 @@ WITH user_occu AS (
         city AS city,
         street_name AS street_name,
         street_address AS street_address,
-        CAST(zip_code AS integer) AS zip_code,
+        zip_code::integer AS zip_code,
         state AS state,
         country AS country,
-        CAST(lat AS float) AS lat,
-        CAST(lng AS float) AS long,
-        dt_current_timestamp AS dt_timestamp
-    FROM {{ source('app','user') }}
+        lat::float AS lat,
+        lng::float AS long,
+        DATEADD('SECOND', dt_current_timestamp, '1970-01-01') AS dt_timestamp
+    FROM {{ dbt_unit_testing.source('app','user') }}
 ), 
     user_dedup AS (
         SELECT *
         FROM user_occu 
         WHERE rn=1
 )
-SELECT * 
+SELECT 
+    user_id, 
+    password,
+    first_name,
+    last_name,
+    username,
+    email,
+    avatar,
+    gender,
+    phone_number,
+    social_insurance_number,
+    date_of_birth,
+    role,
+    city,
+    street_name,
+    street_address,
+    zip_code,
+    state,
+    country,
+    lat,
+    long,
+    dt_timestamp
 FROM user_dedup 
 ORDER BY dt_timestamp DESC
 
