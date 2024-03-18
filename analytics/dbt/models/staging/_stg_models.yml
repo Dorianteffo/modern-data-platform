@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: stg_bank
+  - name: stg_subscription
+  - name: stg_stripe
+  - name: stg_credit_card
+  - name: stg_subscription_details
+  - name: stg_user

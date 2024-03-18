@@ -11,6 +11,8 @@ DBT_DEV: the dev database (the same schemas as the production database)
 
 ```
 
-* To ingest data from RDS to Snowflake
+* Ingest data (daily) from RDS to Snowflake : Airbyte
+
+
 
 
