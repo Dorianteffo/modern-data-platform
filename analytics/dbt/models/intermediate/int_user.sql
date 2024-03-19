@@ -8,7 +8,7 @@ SELECT
     avatar,
     gender,
     phone_number,
-    ocial_insurance_number,
+    social_insurance_number,
     date_of_birth,
     role,
 FROM {{ ref('stg_user') }}

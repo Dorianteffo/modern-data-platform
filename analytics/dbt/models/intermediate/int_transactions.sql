@@ -40,7 +40,7 @@ WITH cte_user AS (
     FROM {{ ref('int_date') }}
  )
 SELECT
-    sd.subscription_details_id AS transactions_id
+    sd.subscription_details_id AS transaction_id,
     sd.user_id,
     s.subscription_id,
     cd.credit_card_id,

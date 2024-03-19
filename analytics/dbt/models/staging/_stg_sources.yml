@@ -129,5 +129,3 @@ sources:
             tests: 
               - accepted_values:
                   values: ['tok_visa', 'tok_mastercard', 'tok_discover']
-          # - name: ccv
-          # - name: ccv_amex

@@ -94,3 +94,7 @@ dbt-deploy:
 	cd analytics && winpty docker exec -it dbt bash -c "cd dbt && dbt run --profiles-dir=. --target prod"
 
 
+
+dbt-down: 
+	cd analytics && docker compose down
+

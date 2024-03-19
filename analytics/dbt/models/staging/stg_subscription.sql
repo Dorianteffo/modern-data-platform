@@ -1,6 +1,6 @@
 SELECT
     id::integer AS subscription_id,
-    user_id,
+    user_id AS user_id,
     plan AS plan,
     status AS status,
     payment_method AS payment_method,

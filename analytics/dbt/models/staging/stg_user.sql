@@ -1,6 +1,6 @@
 WITH user_occu AS (
     SELECT
-        user_id, 
+        user_id AS user_id, 
         ROW_NUMBER() OVER(PARTITION BY user_id ORDER BY dt_current_timestamp DESC) AS rn,  
         password AS password,
         first_name AS first_name,
