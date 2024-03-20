@@ -43,6 +43,7 @@ def dbt_dag():
         default_args={"retries": 2}
     )
 
+
     transform_prod = DbtTaskGroup(
         group_id = "dbt_prod",
         project_config=ProjectConfig(DBT_PROJECT_PATH),
