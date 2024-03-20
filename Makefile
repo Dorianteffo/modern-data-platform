@@ -20,6 +20,9 @@ ec2-dns:
 	terraform -chdir=./terraform output -raw ec2_public_dns
 
 
+airflow-ec2-dns: 
+	terraform -chdir=./terraform output -raw airflow_ec2_public_dns
+
 
 rds-host: 
 	terraform -chdir=./terraform output -raw rds_host
@@ -66,6 +69,8 @@ down:
 
 
 
+
+
 ###############################################################################################
 
 ################## DBT #####################################
@@ -93,4 +98,8 @@ dbt-deps:
 dbt-deploy: 
 	cd analytics && winpty docker exec -it dbt bash -c "cd dbt && dbt run --profiles-dir=. --target prod"
 
+
+
+dbt-down: 
+	cd analytics && docker compose down
 

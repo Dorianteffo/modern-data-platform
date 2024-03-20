@@ -31,11 +31,12 @@ variable "pwd_db" {
 }
 
 
-variable "bucket_name" {
+variable "airflow_instance_type" {
   type        = string
-  default     = "modern-data-platform"
-  description = "Bucket to store RDS data"
+  default     = "t2.medium"
+  description = "Airflow instance typ ec2"
 }
+
 
 
 

@@ -40,7 +40,7 @@ def main():
     )
 
     load_mode = 'append'
-    schema_name = 'app'  # database schema name
+    schema_name = 'app'  # schema name
 
     # load tables to app schema
     load_table(bank_df, engine, 'bank', schema_name, load_mode)
