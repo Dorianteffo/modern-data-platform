@@ -1,0 +1,68 @@
+version: 2
+
+models:
+  - name: int_address
+    description: Dimension table of unique addresses details
+    columns: 
+      - name: address_id
+        tests: 
+          - not_null
+          - unique
+
+  - name: int_bank
+    description: Dimension table of unique banks details
+    columns: 
+      - name: bank_id
+        tests: 
+          - not_null 
+          - unique 
+
+  - name: int_credit_card 
+    description: Dimension table of unique credit cards details
+    columns: 
+      - name: credit_card_id 
+        tests: 
+          - not_null
+          - unique
+
+  - name: int_date
+    description: Dimension table of unique dates
+    columns: 
+      - name: date_id 
+        tests: 
+          - not_null
+          - unique
+  
+  - name: int_stripe
+    description: Dimension table of unique stripe details 
+    columns : 
+      - name: stripe_id 
+        tests: 
+          - not_null
+          - unique 
+
+  - name: int_subscription
+    description: Dimension table of unique subscription details 
+    columns : 
+      - name: subscription_id
+        tests: 
+          - not_null
+          - unique 
+
+
+  - name: int_transactions
+    description: Dimension table of unique transaction details  (qty, revenue, rating)
+    columns : 
+      - name: transaction_id
+        tests: 
+          - not_null
+          - unique 
+
+
+  - name: int_user
+    description: Dimension table of unique user details  (name, role, age,..)
+    columns : 
+      - name: user_id
+        tests: 
+          - not_null
+          - unique 

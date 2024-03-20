@@ -20,6 +20,9 @@ ec2-dns:
 	terraform -chdir=./terraform output -raw ec2_public_dns
 
 
+airflow-ec2-dns: 
+	terraform -chdir=./terraform output -raw airflow_ec2_public_dns
+
 
 rds-host: 
 	terraform -chdir=./terraform output -raw rds_host
@@ -61,6 +64,8 @@ generate-data:
 
 down: 
 	cd data_generator && docker compose down 
+
+
 
 
 

@@ -1,0 +1,40 @@
+name: CD_AIRFLOW
+
+on:
+    push: 
+        branches: 
+            - master
+        paths: 
+            - 'airflow/**'
+
+
+jobs: 
+    deploy_to_ec2:
+        name: deploy_to_EC2
+        runs-on: ubuntu-latest
+        steps: 
+            - name: Checkout repo 
+              uses: actions/checkout@v2
+
+            - name: Deploy server
+              uses: easingthemes/ssh-deploy@main
+              with:
+                SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
+                REMOTE_HOST: ${{ secrets.REMOTE_HOST_AIRFLOW }}
+                REMOTE_USER: ${{ secrets.REMOTE_USER }}
+                SOURCE: "/airflow/"
+                TARGET: "/home/ubuntu/airflow"
+                SCRIPT_AFTER: |
+                    cd airflow
+                    echo -e "AIRFLOW_UID=$(id -u)\nAIRFLOW_GID=0\nAIRFLOW_HOME=$(pwd)" > .env
+                    docker compose up airflow-init
+                    docker compose up -d 
+
+
+##################################################
+############Le premier push ##########################
+# SCRIPT_AFTER: |
+    # cd airflow
+    # echo -e "AIRFLOW_UID=$(id -u)\nAIRFLOW_GID=0" > .env
+    # docker compose up airflow-init
+    # docker compose up -d 
