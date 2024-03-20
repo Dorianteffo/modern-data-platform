@@ -17,6 +17,7 @@ def random_credit_card_expiry_date():
     return f"{year}-{month:02d}-01"
 
 
+
 def random_credit_card_type():
     return random.choice(
         ["visa", "mastercard", "discover", "diners_club", "laser"]

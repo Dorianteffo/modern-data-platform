@@ -27,6 +27,7 @@ jobs:
                 SCRIPT_AFTER: |
                     cd airflow
                     echo -e "AIRFLOW_UID=$(id -u)\nAIRFLOW_GID=0\nAIRFLOW_HOME=$(pwd)" > .env
+                    apache-airflow:dbt-snowflake-dorian
                     docker compose up airflow-init
                     docker compose up -d 
 
