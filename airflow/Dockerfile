@@ -9,6 +9,5 @@ RUN python -m venv dbt_venv
 
 # Activate the virtual environment
 RUN source dbt_venv/bin/activate && \
-    pip install --upgrade pip setuptools && \
     pip install --no-cache-dir --ignore-installed dbt-snowflake && \
     deactivate
