@@ -27,6 +27,12 @@ jobs:
                 SCRIPT_AFTER: |
                     cd airflow
                     echo -e "AIRFLOW_UID=$(id -u)\nAIRFLOW_GID=0" > .env
+                    sudo apt install python3-pip  
+                    pip3 install virtualenv 
+                    virtualenv dbt_venv
+                    source myenv/bin/activate
+                    pip install dbt-snowflake
+                    deactivate
                     docker build -t apache-airflow:dbt-snowflake-dorian . 
                     docker compose up airflow-init
                     docker compose up -d 
