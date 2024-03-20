@@ -5,8 +5,8 @@ from datetime import datetime
 from airflow.decorators import dag
 
 
-DBT_PROJECT_PATH = f"{os.environ['AIRFLOW_HOME']}/dags/dbt/dbt_transformation"
-DBT_EXECUTABLE_PATH = f"{os.environ['AIRFLOW_HOME']}/dbt_venv/bin/dbt"
+DBT_PROJECT_PATH = "/opt/airflow/dags/dbt/dbt_transformation"
+DBT_EXECUTABLE_PATH = "/opt/airflow/dbt_venv/bin/dbt"
 
 profile_config_dev = ProfileConfig(
     profile_name="modern_warehouse",
