@@ -4,7 +4,6 @@ import os
 from datetime import datetime 
 from airflow.decorators import dag
 
-
 DBT_PROJECT_PATH = "/opt/airflow/dags/dbt/dbt_transformation"
 DBT_EXECUTABLE_PATH = "/opt/airflow/dbt_venv/bin/dbt"
 
