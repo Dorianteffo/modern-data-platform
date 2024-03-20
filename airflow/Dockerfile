@@ -7,7 +7,7 @@ RUN pip install --no-cache-dir "apache-airflow==${AIRFLOW_VERSION}" -r /requirem
 # Install dbt-snowflake inside a virtual environment
 RUN python -m venv /opt/airflow/dbt_venv && \
     . /opt/airflow/dbt_venv/bin/activate && \
-    pip install --no-cache-dir dbt-snowflake && \
+    pip install --no-cache-dir --prefix=/opt/airflow/dbt_venv dbt-snowflake && \
     deactivate
 
 USER airflow
