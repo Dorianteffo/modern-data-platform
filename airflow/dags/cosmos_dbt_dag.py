@@ -17,6 +17,7 @@ profile_config_dev = ProfileConfig(
     ),
 )
 
+
 profile_config_prod = ProfileConfig(
     profile_name="modern_warehouse",
     target_name="prod",
