@@ -5,7 +5,7 @@ from datetime import datetime
 from airflow.decorators import dag
 
 DBT_PROJECT_PATH = "/opt/airflow/dags/dbt/dbt_transformation"
-DBT_EXECUTABLE_PATH = "/opt/airflow/dbt_venv/Lib/site-packages"
+# DBT_EXECUTABLE_PATH = "/opt/airflow/dbt_venv/bin/dbt"
 
 profile_config_dev = ProfileConfig(
     profile_name="modern_warehouse",
@@ -38,7 +38,7 @@ def dbt_dag():
         group_id = "dbt_dev",
         project_config=ProjectConfig(DBT_PROJECT_PATH),
         operator_args={"install_deps": True},
-        execution_config = ExecutionConfig(dbt_executable_path = DBT_EXECUTABLE_PATH),
+        # execution_config = ExecutionConfig(dbt_executable_path = DBT_EXECUTABLE_PATH),
         profile_config=profile_config_dev,
         default_args={"retries": 2}
     )
@@ -48,7 +48,7 @@ def dbt_dag():
         group_id = "dbt_prod",
         project_config=ProjectConfig(DBT_PROJECT_PATH),
         operator_args={"install_deps": True},
-        execution_config = ExecutionConfig(dbt_executable_path = DBT_EXECUTABLE_PATH),
+        # execution_config = ExecutionConfig(dbt_executable_path = DBT_EXECUTABLE_PATH),
         profile_config=profile_config_prod,
         default_args={"retries": 2}
     )
