@@ -2,7 +2,7 @@ FROM apache/airflow:2.8.3
 
 COPY requirements.txt /
 
-RUN pip install apache-airflow==${AIRFLOW_VERSION} astronomer-cosmos
+RUN pip install apache-airflow==${AIRFLOW_VERSION} --no-cache-dir -r requirements.txt
 
 # install dbt-snowflake in a virtual env
 RUN export PIP_USER=false && python -m venv dbt_venv && source dbt_venv/bin/activate && \
