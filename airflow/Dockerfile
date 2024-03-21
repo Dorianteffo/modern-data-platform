@@ -1,4 +1,6 @@
-FROM apache/airflow:2.8.3
+# FROM apache/airflow:2.8.3
+
+FROM apache/airflow:2.8.3-python3.10
 
 COPY requirements.txt /
 
