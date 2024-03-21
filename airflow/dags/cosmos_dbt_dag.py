@@ -29,7 +29,7 @@ profile_config_prod = ProfileConfig(
 
 @dag(
     schedule_interval="@daily",
-    start_date=datetime(2024, 3, 22),
+    start_date=datetime(2024, 3, 20),
     catchup=False,
     tags=["dbt", "snowflake"],
     dag_id='dbt-snowflake-dag'
