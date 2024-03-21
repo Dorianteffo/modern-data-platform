@@ -1,4 +1,4 @@
-from cosmos.config import ProjectConfig, ProfileConfig, ExecutionConfig, RenderConfig
+from cosmos.config import ProjectConfig, ProfileConfig, ExecutionConfig
 from cosmos.airflow.task_group import DbtTaskGroup
 from cosmos.profiles import SnowflakeUserPasswordProfileMapping
 from datetime import datetime 
@@ -41,10 +41,10 @@ def dbt_dag():
         project_config=ProjectConfig(DBT_PROJECT_PATH),
         execution_config = ExecutionConfig(dbt_executable_path = DBT_EXECUTABLE_PATH),
         profile_config=profile_config_dev,
-        render_config=RenderConfig(
-            dbt_deps=True
-        ),
-        default_args={"retries": 2}
+        default_args={"retries": 2},
+        operator_args={
+            "install_deps": True
+        } 
     )
 
 
@@ -53,10 +53,10 @@ def dbt_dag():
         project_config=ProjectConfig(DBT_PROJECT_PATH),
         execution_config = ExecutionConfig(dbt_executable_path = DBT_EXECUTABLE_PATH),
         profile_config=profile_config_prod,
-        render_config=RenderConfig(
-            dbt_deps=True
-        ),
         default_args={"retries": 2}
+        operator_args={
+            "install_deps": True
+        } 
     )
 
 
