@@ -33,7 +33,7 @@ variable "pwd_db" {
 
 variable "airflow_instance_type" {
   type        = string
-  default     = "t2.medium"
+  default     = "t2.large"
   description = "Airflow instance typ ec2"
 }
 
