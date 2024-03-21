@@ -26,7 +26,6 @@ profile_config_prod = ProfileConfig(
     ),
 )
 
-
 @dag(
     schedule_interval="@daily",
     start_date=datetime(2024, 3, 20),
