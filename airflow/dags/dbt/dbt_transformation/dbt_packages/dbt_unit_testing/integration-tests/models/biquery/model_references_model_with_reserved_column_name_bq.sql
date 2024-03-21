@@ -1,1 +1,0 @@
-select * from {{ dbt_unit_testing.ref('model_with_reserved_column_name_bq') }}

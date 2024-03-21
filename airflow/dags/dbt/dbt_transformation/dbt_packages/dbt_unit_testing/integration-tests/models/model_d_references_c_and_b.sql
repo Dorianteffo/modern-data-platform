@@ -1,1 +1,0 @@
-select * from {{ dbt_unit_testing.ref('model_c_references_model_with_source') }}, {{ dbt_unit_testing.ref('model_b_references_a') }}

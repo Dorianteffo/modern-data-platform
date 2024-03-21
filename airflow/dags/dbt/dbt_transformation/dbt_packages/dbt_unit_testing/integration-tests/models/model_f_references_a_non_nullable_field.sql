@@ -1,1 +1,0 @@
-select a, b from {{ dbt_unit_testing.ref('model_a') }} where a >=1
