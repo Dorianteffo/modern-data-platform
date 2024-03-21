@@ -24,10 +24,10 @@ jobs:
                 REMOTE_USER: ${{ secrets.REMOTE_USER }}
                 SOURCE: "/airflow/"
                 TARGET: "/home/ubuntu/airflow"
-                SCRIPT_AFTER: |
-                    cd airflow 
-                    docker compose down airflow-scheduler
-                    docker compose up -d airflow-scheduler 
+                # SCRIPT_AFTER: |
+                #     cd airflow 
+                #     docker compose down airflow-scheduler
+                #     docker compose up -d airflow-scheduler 
 
 
 
