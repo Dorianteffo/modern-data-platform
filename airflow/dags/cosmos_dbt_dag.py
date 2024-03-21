@@ -50,6 +50,7 @@ def dbt_dag():
     )
 
 
+
     transform_prod = DbtTaskGroup(
         group_id = "dbt_prod",
         project_config=ProjectConfig(DBT_PROJECT_PATH),
