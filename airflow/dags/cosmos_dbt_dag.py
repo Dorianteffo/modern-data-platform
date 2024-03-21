@@ -53,7 +53,7 @@ def dbt_dag():
         project_config=ProjectConfig(DBT_PROJECT_PATH),
         execution_config = ExecutionConfig(dbt_executable_path = DBT_EXECUTABLE_PATH),
         profile_config=profile_config_prod,
-        default_args={"retries": 2}
+        default_args={"retries": 2},
         operator_args={
             "install_deps": True
         } 
