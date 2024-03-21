@@ -1,4 +1,0 @@
-
-packages:
-  - local: ../
-  - local: ../integration-tests-sub-package

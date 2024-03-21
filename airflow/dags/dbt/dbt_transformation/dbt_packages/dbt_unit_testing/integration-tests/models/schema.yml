@@ -1,8 +1,0 @@
-version: 2
-
-models:
-  - name: model_with_version
-
-    versions:
-      - v: 1
-      - v: 2
