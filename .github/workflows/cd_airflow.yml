@@ -26,6 +26,10 @@ jobs:
                 TARGET: "/home/ubuntu/airflow"
                 SCRIPT_AFTER: |
                     cd airflow 
+                    docker compose down 
+                    docker build -t apache-airflow:dbt-snowflake-dorian .
+                    docker compose up airflow-init
+                    docker compose up -d 
 
 
 
