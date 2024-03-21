@@ -26,8 +26,9 @@ jobs:
                 TARGET: "/home/ubuntu/airflow"
                 SCRIPT_AFTER: |
                     cd airflow 
-                    docker compose down
-                    docker compose up -d 
+                    docker compose down airflow-scheduler
+                    docker compose up -d airflow-scheduler 
+
 
 
 ##################################################

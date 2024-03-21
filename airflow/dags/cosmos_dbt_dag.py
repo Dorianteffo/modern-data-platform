@@ -38,7 +38,6 @@ def dbt_dag():
     transform_dev = DbtTaskGroup(
         group_id = "dbt_dev",
         project_config=ProjectConfig(DBT_PROJECT_PATH),
-        operator_args={"install_deps": True},
         execution_config = ExecutionConfig(dbt_executable_path = DBT_EXECUTABLE_PATH),
         profile_config=profile_config_dev,
         default_args={"retries": 2}
@@ -48,7 +47,6 @@ def dbt_dag():
     transform_prod = DbtTaskGroup(
         group_id = "dbt_prod",
         project_config=ProjectConfig(DBT_PROJECT_PATH),
-        operator_args={"install_deps": True},
         execution_config = ExecutionConfig(dbt_executable_path = DBT_EXECUTABLE_PATH),
         profile_config=profile_config_prod,
         default_args={"retries": 2}
