@@ -83,6 +83,9 @@ x-airflow-common:
     postgres:
       condition: service_healthy
 
+  # install dbt deps
+  command: ["sh", "-c", "source /opt/airflow/dbt_venv/bin/activate && cd /opt/airflow/dags/dbt && dbt deps"]
+
 services:
   postgres:
     image: postgres:13
