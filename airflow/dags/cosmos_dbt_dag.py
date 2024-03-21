@@ -1,4 +1,5 @@
-from cosmos import DbtTaskGroup, ProjectConfig, ProfileConfig, ExecutionConfig
+from cosmos.config import ProjectConfig, ProfileConfig, ExecutionConfig
+from cosmos.airflow.task_group import DbtTaskGroup
 from cosmos.profiles import SnowflakeUserPasswordProfileMapping
 from datetime import datetime 
 from airflow.decorators import dag
