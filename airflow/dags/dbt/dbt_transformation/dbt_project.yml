@@ -41,5 +41,7 @@ models:
       +materialized: table
       +schema: intermediate
     
-    # marts:
+    marts:
+      +materialized: table
+      +schema: finance
       

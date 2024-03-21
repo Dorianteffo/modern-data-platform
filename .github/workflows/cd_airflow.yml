@@ -26,10 +26,8 @@ jobs:
                 TARGET: "/home/ubuntu/airflow"
                 SCRIPT_AFTER: |
                     cd airflow 
-                    echo -e "AIRFLOW_UID=$(id -u)\nAIRFLOW_GID=0" > .env
-                    docker build -t apache-airflow:dbt-snowflake-dorian .
-                    docker compose up airflow-init
-                    docker compose up -d 
+                    docker compose down airflow-scheduler
+                    docker compose up -d airflow-scheduler
 
 
 ##################################################
