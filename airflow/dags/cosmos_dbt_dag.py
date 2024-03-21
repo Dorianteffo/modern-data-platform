@@ -3,10 +3,8 @@ from cosmos.profiles import SnowflakeUserPasswordProfileMapping
 from datetime import datetime 
 from airflow.decorators import dag
 
-
 DBT_PROJECT_PATH = "/opt/airflow/dags/dbt/dbt_transformation"
 DBT_EXECUTABLE_PATH = "/opt/airflow/dbt_venv/bin/dbt"
-
 
 # dev environment 
 profile_config_dev = ProfileConfig(
@@ -17,6 +15,7 @@ profile_config_dev = ProfileConfig(
         profile_args={"database": "DBT_DEV", "schema": "staging"},
     ),
 )
+
 
 # profile for the prod env
 profile_config_prod = ProfileConfig(
