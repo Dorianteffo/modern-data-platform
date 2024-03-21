@@ -1,15 +1,10 @@
-# FROM apache/airflow:2.8.3
-
-FROM apache/airflow:2.8.3-python3.10
+FROM apache/airflow:2.8.3
 
 COPY requirements.txt /
 
 RUN pip install apache-airflow==${AIRFLOW_VERSION} astronomer-cosmos
 
-# # Create the virtual environment using virtualenv
-# RUN python -m venv dbt_venv
-
-# # Activate the virtual environment
-# RUN source dbt_venv/bin/activate && \
-#     pip install --no-cache-dir --ignore-installed dbt-snowflake && \
-#     deactivate
+# install dbt-snowflake in a virtual env
+RUN export PIP_USER=false && python -m venv dbt_venv && source dbt_venv/bin/activate && \
+    pip install --no-cache-dir --ignore-installed dbt-snowflake && \
+    deactivate

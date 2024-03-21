@@ -1,12 +1,12 @@
 from cosmos import DbtTaskGroup, ProjectConfig, ProfileConfig, ExecutionConfig
 from cosmos.profiles import SnowflakeUserPasswordProfileMapping
-import os
 from datetime import datetime 
 from airflow.decorators import dag
 
 DBT_PROJECT_PATH = "/opt/airflow/dags/dbt/dbt_transformation"
-# DBT_EXECUTABLE_PATH = "/opt/airflow/dbt_venv/bin/dbt"
+DBT_EXECUTABLE_PATH = "/opt/airflow/dbt_venv/bin/dbt"
 
+# dev environment 
 profile_config_dev = ProfileConfig(
     profile_name="modern_warehouse",
     target_name="dev",
@@ -16,7 +16,7 @@ profile_config_dev = ProfileConfig(
     ),
 )
 
-
+# profile for the prod env
 profile_config_prod = ProfileConfig(
     profile_name="modern_warehouse",
     target_name="prod",
@@ -38,7 +38,7 @@ def dbt_dag():
         group_id = "dbt_dev",
         project_config=ProjectConfig(DBT_PROJECT_PATH),
         operator_args={"install_deps": True},
-        # execution_config = ExecutionConfig(dbt_executable_path = DBT_EXECUTABLE_PATH),
+        execution_config = ExecutionConfig(dbt_executable_path = DBT_EXECUTABLE_PATH),
         profile_config=profile_config_dev,
         default_args={"retries": 2}
     )
@@ -48,7 +48,7 @@ def dbt_dag():
         group_id = "dbt_prod",
         project_config=ProjectConfig(DBT_PROJECT_PATH),
         operator_args={"install_deps": True},
-        # execution_config = ExecutionConfig(dbt_executable_path = DBT_EXECUTABLE_PATH),
+        execution_config = ExecutionConfig(dbt_executable_path = DBT_EXECUTABLE_PATH),
         profile_config=profile_config_prod,
         default_args={"retries": 2}
     )
