@@ -1,8 +1,9 @@
-from cosmos.config import ProjectConfig, ProfileConfig, ExecutionConfig
+from cosmos.config import ProjectConfig, ProfileConfig, ExecutionConfig, RenderConfig
 from cosmos.airflow.task_group import DbtTaskGroup
 from cosmos.profiles import SnowflakeUserPasswordProfileMapping
 from datetime import datetime 
 from airflow.decorators import dag
+from cosmos.constants import LoadMode
 
 DBT_PROJECT_PATH = "/opt/airflow/dags/dbt/dbt_transformation"
 DBT_EXECUTABLE_PATH = "/opt/airflow/dbt_venv/bin/dbt"
@@ -42,9 +43,10 @@ def dbt_dag():
         execution_config = ExecutionConfig(dbt_executable_path = DBT_EXECUTABLE_PATH),
         profile_config=profile_config_dev,
         default_args={"retries": 2},
-        operator_args={
-            "install_deps": True
-        } 
+        render_config=RenderConfig(
+            load_method=LoadMode.DBT_LS,
+            select=['path:models']
+        )
     )
 
 
@@ -54,9 +56,10 @@ def dbt_dag():
         execution_config = ExecutionConfig(dbt_executable_path = DBT_EXECUTABLE_PATH),
         profile_config=profile_config_prod,
         default_args={"retries": 2},
-        operator_args={
-            "install_deps": True
-        } 
+        render_config=RenderConfig(
+            load_method=LoadMode.DBT_LS,
+            select=['path:models']
+        )
     )
 
 
