@@ -1,0 +1,13 @@
+target
+.DS_Store
+logs
+target/
+dbt_modules/
+dbt_packages/
+logs/
+venv-*/
+venv/
+.venv/
+integration-tests/ci/.user.yml
+tmp
+.idea
