@@ -1,15 +1,14 @@
 from cosmos.config import ProjectConfig, ProfileConfig, ExecutionConfig, RenderConfig
 from cosmos.airflow.task_group import DbtTaskGroup
-from airflow.providers.airbyte.operators.airbyte import AirbyteTriggerSyncOperator
 from cosmos.profiles import SnowflakeUserPasswordProfileMapping
 from datetime import datetime 
 from airflow.decorators import dag
 from cosmos.constants import LoadMode
-import os
+from airflow.operators.bash_operator import BashOperator
 
 DBT_PROJECT_PATH = "/opt/airflow/dags/dbt/dbt_transformation"
 DBT_EXECUTABLE_PATH = "/opt/airflow/dbt_venv/bin/dbt"
-AIRBYTE_JOB_ID = os.getenv('AIRBYTE_JOB_ID', ''),
+
 
 # profile for the prod env
 profile_config_prod = ProfileConfig(
@@ -22,17 +21,17 @@ profile_config_prod = ProfileConfig(
 )
 
 @dag(
-    schedule_interval="0 18 * * *",  # every day at 18
+    schedule_interval="0 20 * * *",  # every day at 20
     start_date=datetime(2024, 3, 22),
     catchup=False,
     tags=["dbt", "snowflake"],
     dag_id='dbt-snowflake-dag'
 )
 def dataplatfom_dag():
-    ingest_airbyte = AirbyteTriggerSyncOperator(
-        task_id="load_tables_rds_snowflake",
-        airbyte_conn_id="airbyte_conn",
-        connection_id=AIRBYTE_JOB_ID,
+    pre_dbt = BashOperator(
+        task_id='pre_dbt',
+        bash_command='echo "Pipeline start..."',
+        dag=dag,
     )
 
     dbt_transform = DbtTaskGroup(
@@ -47,8 +46,13 @@ def dataplatfom_dag():
         )
     )
 
+    post_dbt = BashOperator(
+        task_id='post_dbt',
+        bash_command='echo "Pipeline end..."',
+        dag=dag,
+    )
 
-    ingest_airbyte >> dbt_transform
+    pre_dbt >> dbt_transform >> post_dbt
 
 dataplatfom_dag()
 
