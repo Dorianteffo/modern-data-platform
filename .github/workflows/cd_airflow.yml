@@ -27,10 +27,9 @@ jobs:
                 SCRIPT_AFTER: |
                     cd airflow 
                     echo -e "AIRFLOW_UID=$(id -u)\nAIRFLOW_GID=0" > .env
-                    echo "AIRBYTE_JOB_ID=${{ secrets.AIRBYTE_JOB_ID }}" > .env_airbyte
                     sudo docker build -t apache-airflow:dbt-snowflake-dorian .
-                    sudo docker compose --env-file .env_airbyte up airflow-init
-                    sudo docker compose --env-file .env_airbyte up -d 
+                    sudo docker compose up airflow-init
+                    sudo docker compose up -d 
     
 
 
@@ -39,7 +38,6 @@ jobs:
 # SCRIPT_AFTER: |
 # cd airflow 
 # echo -e "AIRFLOW_UID=$(id -u)\nAIRFLOW_GID=0" > .env
-# echo "AIRBYTE_JOB_ID=$#{{ secrets.AIRBYTE_JOB_ID }}" > .env_airbyte
 # sudo docker build -t apache-airflow:dbt-snowflake-dorian .
-# sudo docker compose --env-file .env_airbyte up airflow-init
-# sudo docker compose --env-file .env_airbyte up -d 
+# sudo docker compose up airflow-init
+# sudo docker compose up -d 
