@@ -28,10 +28,10 @@ profile_config_prod = ProfileConfig(
     dag_id='dbt-snowflake-dag'
 )
 def dataplatfom_dag():
+
     pre_dbt = BashOperator(
         task_id='pre_dbt',
-        bash_command='echo "Pipeline start..."',
-        dag=dag,
+        bash_command='echo "Pipeline start..."'
     )
 
     dbt_transform = DbtTaskGroup(
@@ -48,8 +48,7 @@ def dataplatfom_dag():
 
     post_dbt = BashOperator(
         task_id='post_dbt',
-        bash_command='echo "Pipeline end..."',
-        dag=dag,
+        bash_command='echo "Pipeline end..."'
     )
 
     pre_dbt >> dbt_transform >> post_dbt
