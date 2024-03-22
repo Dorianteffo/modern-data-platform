@@ -1,2 +1,3 @@
 astronomer-cosmos
 apache-airflow-providers-snowflake
+apache-airflow-providers-airbyte
