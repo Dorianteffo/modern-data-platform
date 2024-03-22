@@ -16,8 +16,17 @@ AIRBYTE_ROLE : used by airbyte to write in the RAW database (postgres_airbyte sc
 
 * Ingest data (daily) from RDS to Snowflake : Airbyte
 
-* DBT structure 
+## DBT structure 
 
+## Airflow : 
+* When the CD to deploy the airflow code is done, we need to execute this on the EC2 instance: 
+```
+cd airflow 
+docker exec (webserver_container_id) /bin/bash -c "source /opt/airflow/dbt_venv/bin/activate && cd /opt/airflow/dags/dbt/dbt_transformation/ && dbt deps && deactivate"
+```
+
+
+* Then create the snowflake_conn and the airbyte_conn
 
 
 
