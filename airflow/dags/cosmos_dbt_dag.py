@@ -22,7 +22,7 @@ profile_config_prod = ProfileConfig(
 )
 
 @dag(
-    schedule_interval="@daily",
+    schedule_interval="0 18 * * *",  # every day at 18
     start_date=datetime(2024, 3, 22),
     catchup=False,
     tags=["dbt", "snowflake"],
