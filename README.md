@@ -2,6 +2,10 @@
 ![archi.png](assets/archi.PNG)
 
 
+## Article 
+Check my blog article for more details  : https://medium.com/datadriveninvestor/how-i-built-this-data-platform-in-one-week-13b457d7c323
+
+
 ## Setup 
 
 * Before running the terraform apply 
@@ -39,6 +43,9 @@ docker exec (webserver_container_id) /bin/bash -c "source /opt/airflow/dbt_venv/
 
 ![airflow.png](assets/airflowUI.PNG)
 
+
+## Dashboard
+![dashboard.png](assets/Dashboard.PNG)
 
 ## What need to be improved ? 
 * Terraform resource to create the tables on snowflake
